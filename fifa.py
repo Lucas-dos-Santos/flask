@@ -5,8 +5,7 @@ import pickle
 import numpy as np
 import random
 
-app = Flask(__name__, template_folder='docs')
-
+app = Flask(__name__)
 
 
 class Times:
@@ -47,12 +46,19 @@ times = [
 def index():
     return render_template('index.html')
 
-@app.route('/resultado', methods=['POST'])
+
+@app.route('/resultado', methods=['GET', 'POST'])
 def resultado():
     if request.method == 'POST':
-        time = random.choice(times)
-        return render_template('resultado.html', resultado=time)
-    return render_template('index.html')
+        texto = time = random.choice(times)
+
+        # print(texto)
+        # print(texto[time.nome])
+
+        return render_template('resultado.html', resultado=texto)
+    else:
+        return render_template('index.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
