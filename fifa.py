@@ -47,19 +47,12 @@ times = [
 def index():
     return render_template('index.html')
 
-
-@app.route('/resultado', methods=['GET', 'POST'])
+@app.route('/resultado', methods=['POST'])
 def resultado():
     if request.method == 'POST':
-        texto = time = random.choice(times)
-
-        # print(texto)
-        # print(texto[time.nome])
-
-        return render_template('resultado.html', resultado=texto)
-    else:
-        return render_template('index.html')
-
+        time = random.choice(times)
+        return render_template('resultado.html', resultado=time)
+    return render_template('index.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
