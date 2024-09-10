@@ -5,7 +5,8 @@ import pickle
 import numpy as np
 import random
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='docs')
+
 
 
 class Times:
